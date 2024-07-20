@@ -70,4 +70,14 @@
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DBC.Common\DBC.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Platforms\Android\DemoService.cs">
+        <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+      </Compile>
+    </ItemGroup>
+
 </Project>
