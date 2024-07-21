@@ -14,6 +14,8 @@ RUN dotnet restore "./DBC.Web/DBC.Web.csproj"
 COPY . .
 WORKDIR "/src/DBC.Web"
 RUN dotnet build "./DBC.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN npm ci
+RUN npm run build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
