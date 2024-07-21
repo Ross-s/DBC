@@ -71,10 +71,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DBC.Common\DBC.Common.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Update="Platforms\Android\DemoService.cs">
         <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
       </Compile>
