@@ -7,6 +7,7 @@ EXPOSE 8080
 EXPOSE 8081
 
 FROM node:20.12.2 AS node
+WORKDIR /src/DBC.Web/
 RUN npm ci
 RUN npm run build
 
