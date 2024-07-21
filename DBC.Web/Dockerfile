@@ -6,7 +6,8 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS b1
+FROM node:20.12.2 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["DBC.Web/DBC.Web.csproj", "DBC.Web/"]
