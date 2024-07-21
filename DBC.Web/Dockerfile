@@ -6,17 +6,21 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS b1
-FROM node:20.12.2 AS build
+FROM node:20.12.2 AS node
+RUN npm ci
+RUN npm run build
+
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["DBC.Web/DBC.Web.csproj", "DBC.Web/"]
 RUN dotnet restore "./DBC.Web/DBC.Web.csproj"
 COPY . .
+COPY --from=node /src/DBC.Web/wwwroot/ ./DBC.Web/ClientApp/wwwroot
 WORKDIR "/src/DBC.Web"
 RUN dotnet build "./DBC.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
-RUN npm ci
-RUN npm run build
+
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
