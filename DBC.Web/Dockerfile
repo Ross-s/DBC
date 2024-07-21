@@ -8,7 +8,7 @@ EXPOSE 8081
 
 FROM node:20.12.2 AS node
 WORKDIR /src/DBC.Web/
-RUN npm ci
+RUN npm i
 RUN npm run build
 
 
