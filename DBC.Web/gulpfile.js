@@ -9,7 +9,7 @@ var postcss = require('gulp-postcss');
 function buildJs () {
     return gulp.src("wwwroot/js/**/*.tsx")
         .pipe(webpack({
-            mode: "development",
+            mode: "production",
             entry: {
                 app: path.resolve(__dirname, "wwwroot/js/app.tsx"),
             },
