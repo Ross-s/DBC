@@ -10,7 +10,7 @@ FROM node:20.12.2 AS node
 WORKDIR /src
 COPY . .
 WORKDIR /src/DBC.Web/
-RUN npm i
+RUN npm ci
 RUN npm run build
 
 
