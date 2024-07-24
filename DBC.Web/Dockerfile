@@ -21,6 +21,7 @@ COPY ["DBC.Web/DBC.Web.csproj", "DBC.Web/"]
 RUN dotnet restore "./DBC.Web/DBC.Web.csproj"
 COPY . .
 WORKDIR "/src/DBC.Web"
+COPY --from=node /src/DBC.Web/wwwroot/. ./wwwroot
 RUN dotnet build "./DBC.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 
@@ -31,5 +32,4 @@ RUN dotnet publish "./DBC.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY --from=node /src/DBC.Web/wwwroot/. ./app/wwwroot
 ENTRYPOINT ["dotnet", "DBC.Web.dll"]
